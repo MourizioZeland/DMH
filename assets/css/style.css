@@ -1,0 +1,30 @@
+html {
+    background: url(../images/hands.png) no-repeat center center fixed;;
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: inset 2000px 0 0 rgba(193,193,193,0.6);
+    min-height: 100%;
+}
+
+body {
+    background: none;
+}
+
+#dropdownMenuButton {
+    margin-left: 150px;
+    margin-top: 10px;
+}
+
+#clearButton {
+    margin: auto;
+}
+
+#mapRow {
+    min-height: 540px;
+}
+
+#metroButton {
+    background-color: #502059;
+    color: white;
+    margin: auto
+}

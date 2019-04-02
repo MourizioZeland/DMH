@@ -12,6 +12,7 @@ body {
 
 #dropdownMenuButton {
     margin-left: 150px;
+    margin-top: 10px;
 }
 
 #clearButton {
@@ -19,5 +20,11 @@ body {
 }
 
 #mapRow {
-    min-height: 550px;
+    min-height: 540px;
+}
+
+#metroButton {
+    background-color: #502059;
+    color: white;
+    margin: auto
 }

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -15,12 +15,18 @@
   <body>
 
    
-    <h1 class = "display">Hello, world!</h1>
+    <h1 id = "display">Hello, world!</h1>
+
+    <div id = "map"></div>
 
     <p>Yeah totally, fanstastic, wonderful. >:)</p>
-    
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdOM3mqG__SwwJQ7dhBNQNfE9SYuFIGw8&callback=initMap">
+    </script>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
      <script src = "assets/javascript/app.js"></script>
      <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>

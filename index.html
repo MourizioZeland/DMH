@@ -1,25 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="assets/javascript/app.js"></script>
-    <title>Hello, world!</title>
-    
-  </head>
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <title>Hello, world!</title>
+
+</head>
+
+<body>
+
+  <div class="container mw-100">
+    <div id="buttonRow" class="row">
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+        <div class="dropdown">
+          <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Food
+          </button>
+          <div class="dropdown-menu foodMenu" aria-labelledby="dropdownMenuButton"></div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+        <div class="dropdown">
+          <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Shelter
+          </button>
+          <div class="dropdown-menu shelterMenu" aria-labelledby="dropdownMenuButton"></div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+          <div class="dropdown">
+              <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Hospitals
+              </button>
+              <div class="dropdown-menu hospitalMenu" aria-labelledby="dropdownMenuButton">
+                <!-- <a class="dropdown-item" value="#">Name</a> -->
+                <!-- Need to add these lines to the dropdown-menu using JS -->
+              </div>
+            </div>
+      </div>
+    </div>
+    <div id="map" class="row"></div>
+    <div id="clearRow" class="row">
+        <button type="button" id="clearButton" class="btn btn-danger btn-lg">Clear</button>
+    </div>
+    <br>
+    <div id="metroRow" class="row">
+        <button type="button" id="metroButton" class="btn btn-lg">Metro Bus</button>
+    </div>
+  </div>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   
-  <body>
-
-    <h1>Hello, world!</h1>
-
-    <p>Yeah totally, fanstastic, wonderful. >:)</p>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  
+      <link rel="stylesheet" href="assets/css/style.css">
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdOM3mqG__SwwJQ7dhBNQNfE9SYuFIGw8&callback=initMap">
+    </script>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+     <script src = "assets/javascript/app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>

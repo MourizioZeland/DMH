@@ -1,8 +1,12 @@
 
-#map{
-    width: 100%;
-    height: 400px;
+#map {
+    width: 50%;
+    margin:auto;
     background-color: grey;
+    min-height: 540px;
+   
+    
+}
   
 html {
     background: url(../images/hands.png) no-repeat center center fixed;;
@@ -17,7 +21,8 @@ body {
 }
 
 #dropdownMenuButton {
-    margin-left: 150px;
+   
+    margin-left: 10px;
     margin-top: 10px;
 }
 
@@ -25,9 +30,7 @@ body {
     margin: auto;
 }
 
-#mapRow {
-    min-height: 540px;
-}
+
 
 #metroButton {
     background-color: #502059;

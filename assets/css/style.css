@@ -24,11 +24,12 @@ p {
     margin: auto;
     margin-top: 20px;
     margin-bottom: 20px;
+    min-height: 520px;
 }
 
 #dropdownMenuButton {
    
-    margin-left: 10px;
+    margin-left: 150px;
     margin-top: 10px;
 }
 

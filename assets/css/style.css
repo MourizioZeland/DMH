@@ -1,3 +1,4 @@
+
 html {
     background: url(../images/hands.png) no-repeat center center fixed;
     background-size: cover;
@@ -26,7 +27,8 @@ p {
 }
 
 #dropdownMenuButton {
-    margin-left: 150px;
+   
+    margin-left: 10px;
     margin-top: 10px;
 }
 
@@ -34,10 +36,7 @@ p {
     margin: auto;
 }
 
-#mapRow {
-    min-height: 540px;
-    max-height: 540px; 
-}
+
 
 #metroButton {
     background-color: #502059;

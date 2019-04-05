@@ -1,9 +1,72 @@
 
 $(document).ready(function () {
+
+  
+ 
+loopMe();
+// loops for arrays
+function loopMe() {
+        var k = 0;
+        var j = 0;
+        var i = 0;
+        while (i < food.length) {
+            var placer = document.createElement("a");
+            placer.classList.add("dropdown-item");
+            placer.setAttribute("href","#");
+            placer.textContent = food[i];
+            var holder = document.getElementById("foodmenu");
+            holder.appendChild(placer);
+            i++;
+        }
+        
+        while (j < hospital.length) {
+            var placer = document.createElement("a");
+            placer.classList.add("dropdown-item");
+            placer.setAttribute("href","#");
+            placer.textContent = hospital[j];
+            var holder = document.getElementById("hospitalsmenu");
+            holder.appendChild(placer);
+            j++;
+        }
+        while (k < shelter.length) {
+            var placer = document.createElement("a");
+            placer.classList.add("dropdown-item");
+            placer.setAttribute("href","#");
+            placer.textContent = shelter[k];
+            var holder = document.getElementById("sheltermenu");
+            holder.appendChild(placer);
+            k++;
+        }
+
+        // for (var i = 0; i < hospital.length; i++); {
+        //     console.log('i',i);
+        //     var placer = document.createElement("a");
+        //     placer.classList.add("dropdown-item");
+        //     placer.setAttribute("href","#");
+        //     placer.textContent=hospital;
+        //     var holder = document.getElementById("foodmenu");
+        //     holder.appendChild(placer);
+        //     console.log(placer);
+        //     console.log(holder);
+        //     console.log(hospital,i);
+            
+        // }
+       // for (var i = 0; i < shelter.length; i++); {
+          
+
+       // }
+      //  for (var i = 0; i < foodBank.length; i++); {
+       
+
+        
+      //  }
+
+}
     setTimeout(function () {
         $('#logo').hide();
         geoFindMe();
     }, 3000);
+
 
 
     // var of location banks
@@ -142,7 +205,9 @@ $(document).ready(function () {
         }
 
     }
+
     // initMap();
+
 
     // mapStart();
 

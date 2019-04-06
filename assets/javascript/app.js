@@ -1,73 +1,10 @@
 
 $(document).ready(function () {
-
-  
- 
-// loopMe();
-// // loops for arrays
-// function loopMe() {
-//         var k = 0;
-//         var j = 0;
-//         var i = 0;
-//         while (i < foodBank.length) {
-//             var placer = document.createElement("a");
-//             placer.classList.add("dropdown-item");
-//             placer.setAttribute("href","#");
-//             placer.textContent = food[i];
-//             var holder = document.getElementById("foodmenu");
-//             holder.appendChild(placer);
-//             i++;
-//         }
-        
-//         while (j < hospital.length) {
-//             var placer = document.createElement("a");
-//             placer.classList.add("dropdown-item");
-//             placer.setAttribute("href","#");
-//             placer.textContent = hospital[j];
-//             var holder = document.getElementById("hospitalsmenu");
-//             holder.appendChild(placer);
-//             j++;
-//         }
-//         while (k < shelter.length) {
-//             var placer = document.createElement("a");
-//             placer.classList.add("dropdown-item");
-//             placer.setAttribute("href","#");
-//             placer.textContent = shelter[k];
-//             var holder = document.getElementById("sheltermenu");
-//             holder.appendChild(placer);
-//             k++;
-//         }
-
-//         for (var i = 0; i < hospital.length; i++); {
-//             console.log('i',i);
-//             var placer = document.createElement("a");
-//             placer.classList.add("dropdown-item");
-//             placer.setAttribute("href","#");
-//             placer.textContent=hospital;
-//             var holder = document.getElementById("foodmenu");
-//             holder.appendChild(placer);
-//             console.log(placer);
-//             console.log(holder);
-//             console.log(hospital,i);
-            
-//         }
-//        for (var i = 0; i < shelter.length; i++); {
-          
-
-//        }
-//        for (var i = 0; i < foodBank.length; i++); {
-       
-
-        
-//        }
-
-// }
     setTimeout(function () {
         $('#logo').hide();
         geoFindMe();
+        loopMe();
     }, 3000);
-
-
 
     // var of location banks
     var hospital = ["Banner Good Samaritan Hospital ", "St. Joseph's Hospital", "Phoenix Memorial Hospital", "Arizona Heart Hospital", "MIHS", "Honorhealth John C. Lincoln", "Phoenix Indian Hosptial", "Banner Estrella", "Honorhealth Deer Valley", "Abrazo Central Campus", "Valley Hospital", "St. Luke's Hosptial"];
@@ -89,17 +26,26 @@ $(document).ready(function () {
     };
     firebase.initializeApp(config);
 
-
-    // var config = {
-    //     apiKey: "AIzaSyAhp7-_uxEZG2GA0G5vqsz_AJuAl_CXEyw",
-    //     authDomain: "rps-game-4259b.firebaseapp.com",
-    //     databaseURL: "https://rps-game-4259b.firebaseio.com",
-    //     projectId: "rps-game-4259b",
-    //     storageBucket: "rps-game-4259b.appspot.com",
-    //     messagingSenderId: "783121925183"
-    // };
-
     var database = firebase.database();
+
+    // // loops for arrays
+    function loopMe() {
+
+        for (i = 0; i < foodBank.length; i++) {
+            var foodDiv = $("<div>").addClass("dropdown-item").attr("value", foodBank[i]).text(foodBank[i]);
+            $("#foodMenu").append(foodDiv);
+        }
+
+        for (j = 0; j < hospital.length; j++) {
+            var hospitalDiv = $("<div>").addClass("dropdown-item").attr("value", hospital[j]).text(hospital[j]);
+            $("#hospitalMenu").append(hospitalDiv);
+        }
+
+        for (k = 0; k < shelter.length; k++) {
+            var shelterDiv = $("<div>").addClass("dropdown-item").attr("value", shelter[k]).text(shelter[k]);
+            $("#shelterMenu").append(shelterDiv);
+        }
+    }
 
     function initMap() {
 
@@ -129,8 +75,6 @@ $(document).ready(function () {
             });
         });
     }
-
-
 
     //LOOP IS EMPTY
     // loopMe();
@@ -207,7 +151,6 @@ $(document).ready(function () {
     }
 
     // initMap();
-
 
     // mapStart();
 

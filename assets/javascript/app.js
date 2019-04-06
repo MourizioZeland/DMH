@@ -3,7 +3,6 @@ $(document).ready(function () {
     setTimeout(function () {
         $('#logo').hide();
         geoFindMe();
-        loopMe();
     }, 3000);
 
     // var of location banks
@@ -32,17 +31,17 @@ $(document).ready(function () {
     function loopMe() {
 
         for (i = 0; i < foodBank.length; i++) {
-            var foodDiv = $("<div>").addClass("dropdown-item").attr("value", foodBank[i]).text(foodBank[i]);
+            var foodDiv = $("<a>").addClass("dropdown-item").attr("value", foodBank[i]).text(foodBank[i]);
             $("#foodMenu").append(foodDiv);
         }
 
         for (j = 0; j < hospital.length; j++) {
-            var hospitalDiv = $("<div>").addClass("dropdown-item").attr("value", hospital[j]).text(hospital[j]);
+            var hospitalDiv = $("<a>").addClass("dropdown-item").attr("value", hospital[j]).text(hospital[j]);
             $("#hospitalMenu").append(hospitalDiv);
         }
 
         for (k = 0; k < shelter.length; k++) {
-            var shelterDiv = $("<div>").addClass("dropdown-item").attr("value", shelter[k]).text(shelter[k]);
+            var shelterDiv = $("<a>").addClass("dropdown-item").attr("value", shelter[k]).text(shelter[k]);
             $("#shelterMenu").append(shelterDiv);
         }
     }
@@ -150,6 +149,13 @@ $(document).ready(function () {
 
     }
 
+    function test() {
+        var test1 = $(this).attr("value");
+        console.log(test1);
+    }
+
+    loopMe();
+
     // initMap();
 
     // mapStart();
@@ -162,6 +168,7 @@ $(document).ready(function () {
     //         complete = false;
     //     }
     // }
+    $(document).on("click",".dropdown-item", test);
 });
 
 

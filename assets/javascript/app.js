@@ -6,7 +6,6 @@ $(document).ready(function () {
     setTimeout(function () {
         $('#logo').hide();
         geoFindMe();
-        loopMe();
     }, 3000);
 
     // Arrays of location banks, and empty vairables declaring to work around any scope issues when used in
@@ -194,8 +193,10 @@ $(document).ready(function () {
 
     }
 
+
     //Event listener waiting for a click on any of the dropdown items, to run the clicked function
     $(document).on("click", ".dropdown-item", clicked);
     //Calls the initMap function by itself to initialize the map.
     initMap();
+  loopMe();
 });

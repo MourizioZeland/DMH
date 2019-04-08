@@ -37,6 +37,7 @@ $(document).ready(function () {
     var infowindow;
     var userLoc;
     var thisThing;
+    var userFound;
     var coordLat;
     var coordLong;
 
@@ -87,6 +88,7 @@ $(document).ready(function () {
 
         database.ref().on("value", function (childSnapshot) {
 
+            if(!userFound){
             //Converts the stored Firebase values into intergers from a string, while maintaining the decimals
             coordLat = parseFloat(childSnapshot.child('location').val().Coordinates_Latitude);
             console.log(coordLat);
@@ -112,6 +114,14 @@ $(document).ready(function () {
                 map: map
             });
 
+            userFound = true;
+
+        }
+        else{
+            
+        }
+            
+
         });
 
     }
@@ -124,7 +134,8 @@ $(document).ready(function () {
         //Object created to contain the search term as well as the parameters.
         var request = {
             query: thisThing,
-            fields: ['name', 'formatted_address', 'icon', 'user_ratings_total', 'geometry', 'phone number'],
+            fields: ['name', 'formatted_address', 'user_ratings_total', 'geometry',
+             'opening_hours', 'formatted_phone_number'],
         };
 
         service = new google.maps.places.PlacesService(map);
@@ -154,8 +165,17 @@ $(document).ready(function () {
         
         //Adds a listener for when an item is clicked, displays the place name.
         google.maps.event.addListener(marker, 'click', function () {
-            infowindow.setContent(place.name);
-            //infowindow.setAttribute("src", place.icon);
+           console.log(place);
+           console.log(place.photos);
+            var spacer = document.createElement("p");
+            //spacer.innerHTML(place.formatted_address);
+            var placeIcon = document.createElement("img").setAttribute("url", place.icon);
+            infowindow.setContent('<div>' + '<h3>' + place.name + '</h3><br><p>' + 
+            place.formatted_address + '</br><p>' + place.field.phone_number +
+            '</p>Rating: ' + place.rating + '/5</p>');
+
+            
+            //infowindow.appendChild(spacer);
             infowindow.open(map, this);
         });
     }
@@ -163,6 +183,46 @@ $(document).ready(function () {
     //On the call of this function, grabs the location, coordinates, of the user upon approval, pushes
     //these to firebase
     function geoFindMe() {
+
+        // database.ref().on("value", function (childSnapshot) {
+
+        //     if(!userFound){
+        //     //Converts the stored Firebase values into intergers from a string, while maintaining the decimals
+        //     coordLat = parseFloat(childSnapshot.child('location').val().Coordinates_Latitude);
+        //     console.log(coordLat);
+        //     coordLong = parseFloat(childSnapshot.child('location').val().Coordinates_Longitude);
+        //     console.log(coordLong);
+
+        //     //Creates an object holding the newly defined coordinates.
+        //     userLoc = {
+        //         lat: coordLat,
+        //         lng: coordLong
+        //     };
+
+        //     //Grabs the appropriate display div where the map would go, and embeds a google Map.
+        //     map = new google.maps.Map(
+        //         document.getElementById('map'), {
+        //             zoom: 9,
+        //             center: userLoc
+        //         });
+
+        //     //Places a marker on the map corresponding to the user location.
+        //     var marker = new google.maps.Marker({
+        //         position: userLoc,
+        //         map: map
+        //     });
+
+        //     userFound = true;
+
+        // }
+        // else{
+            
+        // }
+            
+
+        // });
+        
+        
 
         function success(position) {
 
@@ -176,6 +236,8 @@ $(document).ready(function () {
                 Coordinates_Latitude: coordLat,
                 Coordinates_Longitude: coordLong,
             });
+
+            initMap();
 
         }
 
@@ -191,12 +253,13 @@ $(document).ready(function () {
             navigator.geolocation.getCurrentPosition(success, error);
         }
 
+    
     }
 
 
     //Event listener waiting for a click on any of the dropdown items, to run the clicked function
     $(document).on("click", ".dropdown-item", clicked);
     //Calls the initMap function by itself to initialize the map.
-    initMap();
+    
   loopMe();
 });

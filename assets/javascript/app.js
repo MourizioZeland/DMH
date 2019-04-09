@@ -128,18 +128,7 @@ $(document).ready(function () {
             else {
 
             }
-
-
-            userFound = true;
-
-        }
-        else{
-            
-        }
-            
-
         });
-
     }
 
     //This is the logic defining how the googleMaps Places API is searched.
@@ -200,46 +189,6 @@ $(document).ready(function () {
     //On the call of this function, grabs the location, coordinates, of the user upon approval, pushes
     //these to firebase
     function geoFindMe() {
-
-        // database.ref().on("value", function (childSnapshot) {
-
-        //     if(!userFound){
-        //     //Converts the stored Firebase values into intergers from a string, while maintaining the decimals
-        //     coordLat = parseFloat(childSnapshot.child('location').val().Coordinates_Latitude);
-        //     console.log(coordLat);
-        //     coordLong = parseFloat(childSnapshot.child('location').val().Coordinates_Longitude);
-        //     console.log(coordLong);
-
-        //     //Creates an object holding the newly defined coordinates.
-        //     userLoc = {
-        //         lat: coordLat,
-        //         lng: coordLong
-        //     };
-
-        //     //Grabs the appropriate display div where the map would go, and embeds a google Map.
-        //     map = new google.maps.Map(
-        //         document.getElementById('map'), {
-        //             zoom: 9,
-        //             center: userLoc
-        //         });
-
-        //     //Places a marker on the map corresponding to the user location.
-        //     var marker = new google.maps.Marker({
-        //         position: userLoc,
-        //         map: map
-        //     });
-
-        //     userFound = true;
-
-        // }
-        // else{
-            
-        // }
-            
-
-        // });
-        
-        
 
         function success(position) {
 

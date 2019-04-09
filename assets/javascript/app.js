@@ -172,15 +172,11 @@ $(document).ready(function () {
         google.maps.event.addListener(marker, 'click', function () {
            console.log(place);
            console.log(place.url);
-            var spacer = document.createElement("p");
-            
             var placeIcon = document.createElement("img").setAttribute("url", place.icon);
             infowindow.setContent('<div>' + '<h3>' + place.name + '</h3><br><p>' + 
             place.formatted_address + '</br><a href = '+ place.url + '>Website</a>' +
             '</p>Rating: ' + place.rating + '/5</p>');
 
-            
-            //infowindow.appendChild(spacer);
             infowindow.open(map, this);
 
         });
@@ -209,14 +205,11 @@ $(document).ready(function () {
         //If the coordinates are not provided by the user, lets the user know of such, otherwise runs the success function
         function error() {
             geoFindMe()
-            // status.textContent = 'Unable to retrieve your location';
         }
 
         if (!navigator.geolocation) {
-
-            //status.textContent = 'Geolocation is not supported by your browser';
+            console.log("Didn't go through")
         } else {
-            //status.textContent = 'Locating…';
             navigator.geolocation.getCurrentPosition(success, error);
         }
     }

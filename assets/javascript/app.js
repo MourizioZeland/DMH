@@ -1,4 +1,6 @@
+
 $(document).ready(function () {
+
 
     //Timeout function displays our logo in the center of the screen for 3 seconds before
     //hiding the element and running the geoFindMe function, which generates the map using the users
@@ -11,26 +13,28 @@ $(document).ready(function () {
     // Arrays of location banks, and empty vairables declaring to work around any scope issues when used in
     //the following functions.
     var hospital = ["Banner Good Samaritan Hospital ", "St. Joseph\'s Hospital and Medical Center", "Phoenix Memorial Hospital",
-        "Arizona Heart Hospital", "MIHS", "Honorhealth John C. Lincoln", "Phoenix Indian Hosptial", "Banner Estrella", "Honorhealth Deer Valley",
-        "Abrazo Central Campus", "Valley Hospital", "St. Luke's Hosptial"
+
+        "Arizona Heart Hospital", "Maricopa Intergrated Health System ", "Honorhealth John C. Lincoln", "Phoenix Indian Hosptial", "Banner Estrella", "Honorhealth Deer Valley",
+        "Abrazo Central Campus", "Valley Hospital Phoenix ", "St. Luke\'s Medical Center "
     ];
-    var shelter = ["Homeward Bound", "Church on the Street ", "The Respite Shelter for Homeless Men", "Homebase Youth Services",
+    var shelter = ["Homeward Bound Arizona ", "Church on the Street ", "The Respite Shelter for Homeless Men", "Homebase Youth Services",
         "Arizona Coalition to End Homelessness", "Andre House", "Vista Colina Emergency Family Shelter", "Justa Center", "Homeless ID Project",
-        "Lodestar Day Resource Center", "Brian Garcia Welcome Center", "Central AZ Shelter Services", "House Of Refuge Sunnyslope",
-        "Gift of Mary Womens Shelter", "Phoenix Rescue Mission", "Tumbleweed Phoenix Resource Center", "Terros Safe Haven Shelter",
-        "Kaiser Family Crisis Shelter", "Elim House Shelter", "UMOM Family Shelter", "Family Promise of Greater Phoenix",
-        "La Mesita Family Homeless Shelter", "East Valley Men's Center (EVMC) Shelter", "Save the Family", "East Valley Women's Shelter"
+        "The Lodestar Day Resource Center", "Central AZ Shelter Services", "House Of Refuge Sunnyslope",
+        "Gift of Mary Womens Shelter","Tumbleweed Center for Youth Development",
+         "UMOM Family Shelter", "Family Promise of Greater Phoenix",
+        "La Mesita Family Homeless Shelter", "East Valley Men's Center (EVMC) Shelter", "Save the Family", 
     ];
     var foodBank = ["St. Mary's Food Bank", "Cultral Cup Food Bank", "Valley Christian Centers", "St Stephen's Episcopal Church",
-        "Tanner Chapel A.M.E. Church", "St Gregory's - St Vincent de Paul", "South Mountain Community College", "Rio Vista Center",
-        "Operation Care-Valley Heights", "Open Door Fellowship Church", "Mount of Olives Lutheran Church Food Pantry",
-        "Neighborhood Ministries Inc.", "Manzanita Senior Center", "Living Streams Church Food Pantry", "Life Bridge Resource Center",
-        "Joshua Tree Feeding Program", "Highways and Hedges Ministries", "Friendly House", "First Southern Baptist Church Benevolence Center",
-        "First Pentecostal Church Community Center", "FIBCO Family Services", "Desert West Senior Services", "Desert Christian Fellowship",
-        "Deer Valley Senior Center", "Circle of Life Development", "Cultural Cup Food Bank", "Church on Fillmore",
-        "Central AZ Shelter Services (CASS)", "Carl Hayden Veterans Hospital", "Black Family and Child Services", "Bethel Lutheran Church",
-        "All Tribes Assembly of God Church", "Agape Network", "ICM Food and Clothing Bank", "Gateway Church of God",
-        "Desert Mission Food Bank", "Covenant of Grace Ministries", "Phoenix Rescue Mission", "Northminster Food Bank", "Mom's Pantry"
+        "Tanner Chapel A.M.E. Church", "St Gregory Catholic Parish Phoenix", "South Mountain Community College", "Rio Vista Center",
+        "Operation Care Phoenix", "Open Door Fellowship Church", "Mount of Olives Lutheran Church Food Pantry",
+        "Neighborhood Ministries Phoenix", "Helen Drake Senior Center", "Living Streams Church Food Pantry", "Life Bridge Community Alliance",
+        "Joshua Tree Feeding Program", "Friendly House Phoenix",
+        "First Pentecostal Church Phoenix", "FIBCO Family Services", "Desert West Senior Services", "Desert Christian Fellowship",
+        "Phoenix Deer Valley Senior Center", "Circle of Life Development", "Cultural Cup Food Bank", "Church on Fillmore",
+        "Central AZ Shelter Services (CASS)", "Phoenix Va Health Care System", "Black Family and Child Services",
+        "Phoenix All Tribes Assembly ", "ICM Food and Clothing Bank",
+        "Desert Mission Food Bank", "Covenant of Grace Christian Flshp", "Mom\'s Pantry Phoenix"
+
     ];
     var map;
     var service;
@@ -157,6 +161,7 @@ $(document).ready(function () {
             infowindow.setContent(place.name);
             //infowindow.setAttribute("src", place.icon);
             infowindow.open(map, this);
+
         });
     }
 
@@ -192,7 +197,6 @@ $(document).ready(function () {
         }
 
     }
-
 
     //Event listener waiting for a click on any of the dropdown items, to run the clicked function
     $(document).on("click", ".dropdown-item", clicked);

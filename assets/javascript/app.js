@@ -1,4 +1,6 @@
-$(document).ready(function (clicked) {
+
+$(document).ready(function () {
+
 
     //Timeout function displays our logo in the center of the screen for 3 seconds before
     //hiding the element and running the geoFindMe function, which generates the map using the users
@@ -11,6 +13,7 @@ $(document).ready(function (clicked) {
     // Arrays of location banks, and empty vairables declaring to work around any scope issues when used in
     //the following functions.
     var hospital = ["Banner Good Samaritan Hospital ", "St. Joseph\'s Hospital and Medical Center", "Phoenix Memorial Hospital",
+
         "Arizona Heart Hospital", "Maricopa Intergrated Health System ", "Honorhealth John C. Lincoln", "Phoenix Indian Hosptial", "Banner Estrella", "Honorhealth Deer Valley",
         "Abrazo Central Campus", "Valley Hospital Phoenix ", "St. Luke\'s Medical Center "
     ];
@@ -31,6 +34,7 @@ $(document).ready(function (clicked) {
         "Central AZ Shelter Services (CASS)", "Phoenix Va Health Care System", "Black Family and Child Services",
         "Phoenix All Tribes Assembly ", "ICM Food and Clothing Bank",
         "Desert Mission Food Bank", "Covenant of Grace Christian Flshp", "Mom\'s Pantry Phoenix"
+
     ];
     var map;
     var service;
@@ -193,9 +197,7 @@ $(document).ready(function (clicked) {
         }
 
     }
-   $("#clearRow").on ("click", function(){
-    initMap(null);
-   });
+
     //Event listener waiting for a click on any of the dropdown items, to run the clicked function
     $(document).on("click", ".dropdown-item", clicked);
     //Calls the initMap function by itself to initialize the map.

@@ -171,12 +171,12 @@ $(document).ready(function () {
         //Adds a listener for when an item is clicked, displays the place name.
         google.maps.event.addListener(marker, 'click', function () {
            console.log(place);
-           console.log(place.photos);
+           console.log(place.url);
             var spacer = document.createElement("p");
-            //spacer.innerHTML(place.formatted_address);
+            
             var placeIcon = document.createElement("img").setAttribute("url", place.icon);
             infowindow.setContent('<div>' + '<h3>' + place.name + '</h3><br><p>' + 
-            place.formatted_address + '</br><p>' + place.field.phone_number +
+            place.formatted_address + '</br><a href = '+ place.url + '>Website</a>' +
             '</p>Rating: ' + place.rating + '/5</p>');
 
             

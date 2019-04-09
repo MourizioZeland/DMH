@@ -39,6 +39,10 @@ $(document).ready(function () {
     var thisThing;
     var coordLat;
     var coordLong;
+    var changeCheck = false;
+    var userCheck = true;
+    var markers = [];
+    var counter = 10;
 
     //Creating the config for the firebase being used, and initializing it to be referenced later.
     var config = {
@@ -80,37 +84,45 @@ $(document).ready(function () {
         resourceMarker();
     }
 
-    
+
     //Logic in this function listens for a change in the firebase, uses those values, coordinates, to create a marker on the map
     //upon detecting that change, and centers the map on these coordinates and creates an corresponding marker on the map.
     function initMap() {
 
         database.ref().on("value", function (childSnapshot) {
 
-            //Converts the stored Firebase values into intergers from a string, while maintaining the decimals
-            coordLat = parseFloat(childSnapshot.child('location').val().Coordinates_Latitude);
-            console.log(coordLat);
-            coordLong = parseFloat(childSnapshot.child('location').val().Coordinates_Longitude);
-            console.log(coordLong);
+            if (userCheck) {
+                //Converts the stored Firebase values into intergers from a string, while maintaining the decimals
+                coordLat = parseFloat(childSnapshot.child('location').val().Coordinates_Latitude);
+                console.log(coordLat);
+                coordLong = parseFloat(childSnapshot.child('location').val().Coordinates_Longitude);
+                console.log(coordLong);
 
-            //Creates an object holding the newly defined coordinates.
-            userLoc = {
-                lat: coordLat,
-                lng: coordLong
-            };
+                //Creates an object holding the newly defined coordinates.
+                userLoc = {
+                    lat: coordLat,
+                    lng: coordLong
+                };
 
-            //Grabs the appropriate display div where the map would go, and embeds a google Map.
-            map = new google.maps.Map(
-                document.getElementById('map'), {
-                    zoom: 9,
-                    center: userLoc
+                //Grabs the appropriate display div where the map would go, and embeds a google Map.
+                map = new google.maps.Map(
+                    document.getElementById('map'), {
+                        zoom: 9,
+                        center: userLoc
+                    });
+
+                //Places a marker on the map corresponding to the user location.
+                var marker = new google.maps.Marker({
+                    position: userLoc,
+                    map: map
                 });
 
-            //Places a marker on the map corresponding to the user location.
-            var marker = new google.maps.Marker({
-                position: userLoc,
-                map: map
-            });
+                userCheck = false;
+            }
+            else {
+
+            }
+
 
         });
 
@@ -151,7 +163,7 @@ $(document).ready(function () {
             map: map,
             position: place.geometry.location
         });
-        
+        markers.push(marker);
         //Adds a listener for when an item is clicked, displays the place name.
         google.maps.event.addListener(marker, 'click', function () {
             infowindow.setContent(place.name);
@@ -177,26 +189,190 @@ $(document).ready(function () {
                 Coordinates_Longitude: coordLong,
             });
 
+            initMap();
         }
 
         //If the coordinates are not provided by the user, lets the user know of such, otherwise runs the success function
         function error() {
+            geoFindMe()
             // status.textContent = 'Unable to retrieve your location';
         }
 
         if (!navigator.geolocation) {
+
             //status.textContent = 'Geolocation is not supported by your browser';
         } else {
             //status.textContent = 'Locating…';
             navigator.geolocation.getCurrentPosition(success, error);
         }
+    }
+
+    function changeRow() {
+        if (changeCheck) {
+            $("#map").show();
+            $("#docRow").hide();
+            $("#clearButton").show();
+            changeCheck = false;
+            $("#docButton").text("Doctor Find");
+        }
+        else {
+            $("#map").hide();
+            $("#docRow").show();
+            $("#clearButton").hide();
+            changeCheck = true;
+            $("#docButton").text("Close");
+            docQuery();
+        }
 
     }
 
+    function docQuery() {
+
+        $("#docRow").empty();
+
+        var apiKey = "03625cc189bac3ceaaf4f0a216c15dbe";
+
+        var link = "https://api.betterdoctor.com/2016-03-01/doctors?location=33.6050991%2C-112.4052392%2C25&skip=0&limit=10&user_key=" + apiKey;
+
+        $.ajax({
+            url: link,
+            method: "GET"
+        }).then(function (response) {
+
+            console.log(response);
+
+            var result = response.data;
+
+            for (i = 0; i < result.length; i++) {
+                var card = $("<div>").addClass("card").css("width", "25rem");
+                var cardBody = $("<div>").addClass("card-body");
+                var cardTitle = $("<h5>").addClass("card-title").text("Dr. " + result[i].profile.first_name + " " + result[i].profile.last_name);
+                var cardSubtitle = $("<h6>").addClass("card-subtitle").addClass("mb-2").addClass("text-muted").text(result[i].specialties["0"].actor);
+                var cardText = $("<p>").addClass("card-text").text(result[i].profile.bio);
+                var space = $("<br>");
+
+                var address = result[i].practices;
+
+                cardBody.append(cardTitle).append(cardSubtitle).append(cardText);
+
+                for (j = 0; j < address.length; j++) {
+
+                    var office = $("<p>").text(address[j].visit_address.street + " " + address[j].visit_address.street2 + " " +
+                        address[j].visit_address.city + ", " + address[j].visit_address.state + " " +
+                        address[j].visit_address.zip).addClass("dropdown-iten");
+                    var space = $("<br>");
+                    var phone = address[j].phones;
+
+                    cardBody.append(office);
+
+                    for (k = 0; k < phone.length; k++) {
+                        var number = $("<a>").attr("href", "tel:+1" + phone[k].number).text(phone[k].type + " " + phone[k].number);
+                        var space = $("<br>");
+                        var space2 = $("<br>");
+
+                        cardBody.append(number).append(space).append(space2);
+                    };
+                    cardBody.append(space).append(space);
+                }
+
+                card.append(cardBody);
+
+                $("#docRow").append(card);
+            }
+
+            var card2 = $("<div>").addClass("card").css("width", "25rem");
+            var cardBody2 = $("<div>").addClass("card-body");
+            var more = $("<button>").text("More").addClass("moreButton").css("margin", "auto").css("margin-left", "40%").addClass("btn").addClass("btn-primary").addClass("btn-lg");
+
+            cardBody2.append(more);
+            card2.append(cardBody2);
+            $("#docRow").append(card2);
+        });
+    }
+
+    function moreQuery() {
+
+        counter += 10;
+
+        $("#docRow").empty();
+
+        var apiKey = "03625cc189bac3ceaaf4f0a216c15dbe";
+
+        var link = "https://api.betterdoctor.com/2016-03-01/doctors?location=33.6050991%2C-112.4052392%2C25&skip=0&limit=" + counter + "&user_key=" + apiKey;
+
+        $.ajax({
+            url: link,
+            method: "GET"
+        }).then(function (response) {
+
+            console.log(response);
+
+            var result = response.data;
+
+            for (i = 0; i < result.length; i++) {
+                var card = $("<div>").addClass("card").css("width", "25rem");
+                var cardBody = $("<div>").addClass("card-body");
+                var cardTitle = $("<h5>").addClass("card-title").text("Dr. " + result[i].profile.first_name + " " + result[i].profile.last_name);
+                var cardSubtitle = $("<h6>").addClass("card-subtitle").addClass("mb-2").addClass("text-muted").text(result[i].specialties["0"].actor);
+                var cardText = $("<p>").addClass("card-text").text(result[i].profile.bio);
+                var space = $("<br>");
+
+                var address = result[i].practices;
+
+                cardBody.append(cardTitle).append(cardSubtitle).append(cardText);
+
+                for (j = 0; j < address.length; j++) {
+
+                    var office = $("<p>").text(address[j].visit_address.street + " " + address[j].visit_address.street2 + " " +
+                        address[j].visit_address.city + ", " + address[j].visit_address.state + " " +
+                        address[j].visit_address.zip).addClass("dropdown-iten");
+                    var space = $("<br>");
+                    var phone = address[j].phones;
+
+                    cardBody.append(office);
+
+                    for (k = 0; k < phone.length; k++) {
+                        var number = $("<a>").attr("href", "tel:+1" + phone[k].number).text(phone[k].type + " " + phone[k].number);
+                        var space = $("<br>");
+                        var space2 = $("<br>");
+
+                        cardBody.append(number).append(space).append(space2);
+                    };
+                    cardBody.append(space).append(space);
+                }
+
+                card.append(cardBody);
+
+                $("#docRow").append(card);
+            }
+
+            var card2 = $("<div>").addClass("card").css("width", "25rem");
+            var cardBody2 = $("<div>").addClass("card-body");
+            var more = $("<button>").text("More").addClass("moreButton").css("margin", "auto").css("margin-left", "40%").addClass("btn").addClass("btn-primary").addClass("btn-lg");
+
+            cardBody2.append(more);
+            card2.append(cardBody2);
+            $("#docRow").append(card2);
+        });
+    }
+
+    function clearMarkers() {
+        setMapOnAll(null);
+        markers = [];
+    }
+
+    // Sets the map on all markers in the array.
+    function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(map);
+        }
+    }
 
     //Event listener waiting for a click on any of the dropdown items, to run the clicked function
+    $(document).on("click", ".moreButton", moreQuery);
+    $(document).on("click", "#clearButton", clearMarkers);
     $(document).on("click", ".dropdown-item", clicked);
-    //Calls the initMap function by itself to initialize the map.
-    initMap();
-  loopMe();
+    $(document).on("click", "#docButton", changeRow);
+
+    loopMe();
 });

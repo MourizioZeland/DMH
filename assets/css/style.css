@@ -11,14 +11,14 @@ body {
     background: none;
 }
 
-p {
+#logoText {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
     font-weight: bolder;
 }
 
-#map{
+#map {
     width: 100%;
     height: 480px;
     margin: auto;
@@ -27,22 +27,35 @@ p {
     min-height: 480px;
 }
 
+#docRow {
+    background-color: white;
+    width: 87.3%;
+    height: 480px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    min-height: 480px;
+    overflow-y: auto;
+}
+
 #dropdownMenuButton {
-   
-    margin-left: 150px;
+    margin: auto;
+    margin-left: 25%;
     margin-top: 10px;
+    border-radius: 25px;
 }
 
 #clearButton {
     margin: auto;
+    border-radius: 25px;
+    background-color: red;
 }
 
-
-
-#metroButton {
+#docButton {
     background-color: #502059;
     color: white;
     margin: auto;
+    border-radius: 25px;
 }
 
 #logo{
@@ -72,4 +85,8 @@ p {
     overflow-y: auto;
     height: 500px;
     font-weight: bolder;
+}
+
+.row {
+    margin-bottom: 0px;
 }

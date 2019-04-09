@@ -10,6 +10,8 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 
   <title>Hello, world!</title>
@@ -22,8 +24,9 @@
     <div id="buttonRow" class="row">
       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
         <div class="dropdown">
-          <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton"
+          <button class="btn btn-secondary btn-lg btn-large dropdown-toggle" type="button" id="dropdownMenuButton"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons left">restaurant</i>
             Food
           </button>
           <div id="foodMenu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -32,8 +35,9 @@
       </div>
       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
         <div class="dropdown">
-          <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton"
+          <button class="btn btn-secondary btn-lg btn-large dropdown-toggle" type="button" id="dropdownMenuButton"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons left">home</i>
             Shelter
           </button>
           <div id="shelterMenu" class="dropdown-menu" id="sheltermenu" aria-labelledby="dropdownMenuButton"></div>
@@ -41,8 +45,9 @@
       </div>
       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
         <div class="dropdown">
-          <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton"
+          <button class="btn btn-secondary btn-lg btn-large dropdown-toggle" type="button" id="dropdownMenuButton"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons left">local_hospital</i>
             Hospitals
           </button>
           <div id="hospitalMenu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -55,17 +60,18 @@
     <div id="map" class="row">
       <div id="logo" class="card">
         <div id="innerLogo" class="card-body">
-          <p>PROJECT CONNECT</p>
+          <p id="logoText">PROJECT CONNECT</p>
         </div>
-
       </div>
     </div>
+    <div id="docRow" class="row" style="display: none">
+    </div>
     <div id="clearRow" class="row">
-      <button type="button" id="clearButton" class="btn btn-danger btn-lg">Clear</button>
+      <button type="button" id="clearButton" class="btn btn-danger btn-lg btn-large">Clear</button>
     </div>
     <br>
     <div id="metroRow" class="row">
-      <button type="button" id="metroButton" class="btn btn-lg">Metro Bus</button>
+      <button type="button" id="docButton" class="btn btn-lg btn-large">Doctor Find</button>
     </div>
   </div>
 
@@ -78,7 +84,8 @@
   <!--<script 
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwTeS3Ezr8_tVDVg7KFpb2uUl_GrIrb1E">
     </script>-->
-    <script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwTeS3Ezr8_tVDVg7KFpb2uUl_GrIrb1E&libraries=places"></script>
+  <script async defer type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwTeS3Ezr8_tVDVg7KFpb2uUl_GrIrb1E&libraries=places"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -86,6 +93,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="assets/javascript/app.js"></script>
 </body>
 
